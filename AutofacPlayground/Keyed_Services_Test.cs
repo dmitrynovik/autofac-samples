@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Features.Indexed;
+using FluentAssertions;
 using Xunit;
 
 namespace AutofacPlayground
@@ -7,6 +8,11 @@ namespace AutofacPlayground
     public class DerivedB : B {
         public DerivedB(A a) : base(a)
         {
+        }
+
+        public override string ToString()
+        {
+            return nameof(DerivedB);
         }
     }
 
@@ -45,7 +51,8 @@ namespace AutofacPlayground
                 using (var scope = container.BeginLifetimeScope())
                 {
                     var keyed = scope.Resolve<Keyed>();
-                    keyed.M();
+                    var m = keyed.M();
+                    m.ToString().Should().Be("DerivedB");
                 }
             }
         }
