@@ -26,23 +26,11 @@ namespace AutofacPlayground
         public override string ToString() => _a.ToString();
     }
 
-    public class FactoryExample
-    {
-        private readonly A _a;
-
-        public FactoryExample(Func<A> a)
-        {
-            _a = a();
-        }
-
-        public override string ToString() => _a.ToString();
-    }
-
-    public class Test
+    public class Can_Resolve_B_Test
     {
         private readonly ITestOutputHelper _output;
 
-        public Test(ITestOutputHelper output)
+        public Can_Resolve_B_Test(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -57,7 +45,7 @@ namespace AutofacPlayground
 
             using (var container = builder.Build())
             {
-                using (var lifetimeScope = container.BeginLifetimeScope("outer"))
+                using (var lifetimeScope = container.BeginLifetimeScope())
                 {
                     var b = lifetimeScope.Resolve<B>();
                     _output.WriteLine(b.ToString());
@@ -65,23 +53,13 @@ namespace AutofacPlayground
             }
         }
 
-        [Fact]
-        public void Can_Resolve_C()
-        {
-            var builder = new ContainerBuilder();
 
-            builder.RegisterType<A>();
-            builder.RegisterType<FactoryExample>();
 
-            using (var container = builder.Build())
-            {
-                using (var lifetimeScope = container.BeginLifetimeScope("outer"))
-                {
-                    var c = lifetimeScope.Resolve<FactoryExample>();
-                    _output.WriteLine(c.ToString());
-                }
-            }
-        }
+
+
+
+
+
 
 
 
