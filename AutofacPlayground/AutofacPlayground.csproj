@@ -66,6 +66,9 @@
   <ItemGroup>
     <Compile Include="Can_Resolve_B_Using_Factory_Test.cs" />
     <Compile Include="Can_Resolve_B_Using_Lambda.cs" />
+    <Compile Include="Can_Resolve_Lazy_B_Test.cs" />
+    <Compile Include="Named_Parameters_Test.cs" />
+    <Compile Include="OpenGenericsTest.cs" />
     <Compile Include="POCOs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
